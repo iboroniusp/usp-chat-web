@@ -11,7 +11,7 @@
     "socket.io-client": "^2.3.0"
   },
   "scripts": {
-    "start": "node build",
+    "start": "rREACT_APP_ENV=development eact-scripts start",
     "dev": "REACT_APP_ENV=development react-scripts start",
     "dev-prod": "REACT_APP_ENV=production react-scripts start",
     "build": "REACT_APP_ENV=production react-scripts build",
