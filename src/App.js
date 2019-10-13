@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Rooms from "./components/Rooms";
+import api from "./api";
 
 // Components
 
@@ -8,20 +9,18 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [uspNumber, setUspNumber] = useState("13213123");
   const [password, setPassword] = useState("1234");
+  const [name, setName] = useState(null);
   const [error, setError] = useState(null);
 
   async function signin() {
     try {
-      const response = await fetch("http://localhost:3005/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          usp_number: uspNumber,
-          password
-        })
+      const response = await api.post("/users", {
+        usp_number: uspNumber,
+        password,
+        name
       });
 
-      const data = await response.json();
+      const { data } = response;
 
       if (data.error) {
         setError(data.error);
@@ -31,7 +30,8 @@ function App() {
         // Info guardada enquanto a sessão existir
       }
     } catch (error) {
-      alert("Erro");
+      console.log(error);
+      alert("Erro ao fazer login");
     }
   }
 
@@ -40,17 +40,29 @@ function App() {
       <section>
         <input
           type="text"
+          placeholder="Nome"
+          value={name}
+          onChange={e => setName(e.target.value)}
+        />
+
+        <hr />
+
+        <input
+          type="text"
           placeholder="Numero USP"
           value={uspNumber}
           onChange={event => setUspNumber(event.target.value)}
           // Recuperando novo valor do input através do evento
         />
+        <br />
         <input
           type="password"
           placeholder="Senha"
           value={password}
           onChange={event => setPassword(event.target.value)}
         />
+        <br />
+
         <button onClick={signin}>Entrar</button>
 
         {error && <section>{error}</section>}
@@ -60,7 +72,8 @@ function App() {
   }
 
   return (
-    <section style={{ height: "100%" }}>
+    <section>
+      {authenticated.name}
       <Rooms userId={authenticated._id} />
     </section>
   );

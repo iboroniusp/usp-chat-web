@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Chat from "../Chat";
+import api from "../../api";
 
 function Rooms({ userId }) {
   const [data, setData] = useState([]);
@@ -13,9 +14,8 @@ function Rooms({ userId }) {
 
   async function getInitialProps() {
     try {
-      const result = await fetch("http://localhost:3005/rooms");
-      const json = await result.json();
-      setData(json);
+      const response = await api.get("/rooms");
+      setData(response.data);
       setLoading(false);
     } catch (error) {}
   }

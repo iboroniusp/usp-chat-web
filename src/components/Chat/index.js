@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
+import api from "../../api";
 
-const socket = io("http://localhost:3005");
+const socket = io(
+  process.env.REACT_APP_ENV === "development"
+    ? "http://localhost:3005"
+    : "https://usp-chat-api.herokuapp.com/"
+);
 
 function Chat(props) {
   const { roomId, userId } = props;
@@ -20,9 +25,8 @@ function Chat(props) {
 
   async function getInitialProps() {
     try {
-      const result = await fetch(`http://localhost:3005/rooms/${roomId}`);
-      const json = await result.json();
-      setData(json);
+      const response = await api.get(`/rooms/${roomId}`);
+      setData(response.data);
       setLoading(false);
     } catch (error) {
       setError(String(error));
@@ -31,18 +35,13 @@ function Chat(props) {
 
   async function sendMessage() {
     try {
-      const result = await fetch(`http://localhost:3005/messages`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          text,
-          user_id: userId,
-          room_id: roomId
-        })
+      const response = await api.post(`/messages`, {
+        text,
+        user_id: userId,
+        room_id: roomId
       });
-      const json = await result.json();
       setText("");
-      setData([...data, json]);
+      setData([...data, response.data]);
       setLoading(false);
     } catch (error) {
       setError(String(error));
@@ -58,10 +57,8 @@ function Chat(props) {
   }
 
   return (
-    <section
-      style={{ height: "100%", display: "flex", flexDirection: "column" }}
-    >
-      <section style={{ flex: 1, overflowY: "scroll" }}>
+    <section>
+      <section>
         <ul>
           {data.map(message => (
             <li>
