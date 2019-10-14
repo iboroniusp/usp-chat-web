@@ -35,15 +35,17 @@ function Chat(props) {
 
   async function sendMessage() {
     try {
-      const response = await api.post(`/messages`, {
-        text,
-        user_id: userId,
-        room_id: roomId
-        
-      });
-      setText("");
-      setData([...data, response.data]);
-      setLoading(false);
+      if (text != ""){
+        const response = await api.post(`/messages`, {
+          text,
+          user_id: userId,
+          room_id: roomId
+          
+        });
+        setText("");
+        setData([...data, response.data]);
+        setLoading(false);
+      }      
     } catch (error) {
       setError(String(error));
     }
@@ -72,11 +74,10 @@ function Chat(props) {
       </section>
 
       <div className="chatDiv">      
-        <textarea className="textArea" onChange={e => setText(e.target.value)}>{text}</textarea>
-        <button className="textButton" onClick={sendMessage}>Enviar mensagem</button>
+        <textarea id="msg" className="textArea" onChange={e => setText(e.target.value)}>{text}</textarea>
+        <button className="textButton" onClick={sendMessage}>Enviar mensagem</button>        
       </div>
     </section>
   );
 }
-
 export default Chat;
