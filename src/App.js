@@ -7,10 +7,12 @@ import api from "./api";
 function App() {
   // Getter & Setter
   const [authenticated, setAuthenticated] = useState(false);
-  const [uspNumber, setUspNumber] = useState("13213123");
-  const [password, setPassword] = useState("1234");
+  const [uspNumber, setUspNumber] = useState("");
+  const [password, setPassword] = useState("");
   const [name, setName] = useState(null);
   const [error, setError] = useState(null);
+
+  console.log(process.env.REACT_APP_ENV)
 
   async function signin() {
     try {

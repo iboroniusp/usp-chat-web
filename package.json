@@ -11,8 +11,8 @@
     "socket.io-client": "^2.3.0"
   },
   "scripts": {
-    "start": "set REACT_APP_ENV=development && react-scripts start",
-    "dev": "set REACT_APP_ENV=development && react-scripts start",
+    "start": "set PORT=3005 && set REACT_APP_ENV=development && react-scripts start",
+    "dev": "set PORT=3005 set REACT_APP_ENV=development && react-scripts start",
     "dev-prod": "set REACT_APP_ENV=production && react-scripts start",
     "build": "set REACT_APP_ENV=production && react-scripts build",
     "test": "react-scripts test",

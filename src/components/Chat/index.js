@@ -38,7 +38,9 @@ function Chat(props) {
       const response = await api.post(`/messages`, {
         text,
         user_id: userId,
-        room_id: roomId
+        room_id: roomId,
+        
+        
       });
       setText("");
       setData([...data, response.data]);
