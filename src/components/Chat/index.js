@@ -69,8 +69,10 @@ function Chat(props) {
         </ul>
       </section>
 
-      <textarea onChange={e => setText(e.target.value)}>{text}</textarea>
-      <button onClick={sendMessage}>Enviar mensagem</button>
+      <div className="chatDiv">      
+        <textarea className="textArea" onChange={e => setText(e.target.value)}>{text}</textarea>
+        <button className="textButton" onClick={sendMessage}>Enviar mensagem</button>
+      </div>
     </section>
   );
 }
