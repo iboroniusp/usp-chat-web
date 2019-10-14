@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Rooms from "./components/Rooms";
 import api from "./api";
+import "./index.css";
+import logo from "./utils/usp-chat-logo.png";
+import profile from "./utils/profile.png";
 
 // Components
 
@@ -39,25 +42,31 @@ function App() {
 
   if (!authenticated) {
     return (
+    <div className="main">
+    <div className="image"><img src={logo}/></div>
+    <div className="box">
       <section>
         <input
+          className="customInput"
           type="text"
           placeholder="Nome"
           value={name}
           onChange={e => setName(e.target.value)}
-        />
+          />
 
         <hr />
 
         <input
+          className="customInput"
           type="text"
-          placeholder="Numero USP"
+          placeholder="Número USP"
           value={uspNumber}
           onChange={event => setUspNumber(event.target.value)}
           // Recuperando novo valor do input através do evento
         />
         <br />
         <input
+          className="customInput"
           type="password"
           placeholder="Senha"
           value={password}
@@ -65,19 +74,28 @@ function App() {
         />
         <br />
 
-        <button onClick={signin}>Entrar</button>
+        <div className="buttonDiv"><button className="customButton" onClick={signin}>Entrar</button></div>
 
         {error && <section>{error}</section>}
         {/* verifica se existe um erro e se existir mostra ele  */}
       </section>
+    </div>
+    </div>  
     );
   }
 
   return (
-    <section>
-      {authenticated.name}
-      <Rooms userId={authenticated._id} />
-    </section>
+    <div className="mainRoom">
+      <div className="profile">
+         <img className="profileImg" src={profile} height="30px" width="30px"/>
+        <section className="userName">
+        {authenticated.name}
+        </section>
+      </div> 
+      <section>
+        <Rooms userId={authenticated._id} />
+      </section>
+    </div>
   );
 }
 

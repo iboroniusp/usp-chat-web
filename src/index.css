@@ -16,3 +16,111 @@ body,
 #root {
   height: 100%;
 }
+
+.box {
+  margin-left: 1rem;
+  padding: 2rem;
+  border: 0.15rem solid black;
+  border-radius: 1rem;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
+
+.image {
+  align-self: center;
+}
+
+.customInput {
+  padding: 0.5rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  border-radius: 1rem;
+}
+
+.customButton {
+  width: 5rem;
+  height: 2.5rem;
+  border-radius: 1rem;
+  color: gray;
+  font-size: 80%;
+  font-weight: bolder;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.customButton:focus {
+  outline-style: none;
+}
+
+.customButton:active {
+  box-shadow: inset 0 1rem 1.5rem #fff, 0 1px 3px #666 !important;
+  top:2px
+}
+
+.buttonDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.mainRoom {
+  display: flex;
+  justify-content: baseline;
+  margin: 2rem;
+  padding: 2rem;
+  background-color: white;
+  border: 0.1rem solid gray;
+  border-radius: 1rem;
+  flex-flow: column;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, .3), 0 2px 7px rgba(0, 0, 0, 0.2);
+}
+
+.profile {
+  display: flex;
+  flex-flow: row;
+  align-self: center;
+}
+
+.userName {
+  margin-left: 1rem;
+  font-size: 2rem;
+  align-self: center;
+}
+
+.profileImg {
+  align-self: center;
+}
+
+.customRoomButton {
+  margin-top: 1rem;
+  height: 2rem;
+  font-weight: bolder;
+  border-radius: 1rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 80%;
+  font-weight: bolder;
+  color: gray;
+  cursor: pointer;
+}
+
+.chatDiv {
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+}
+
+.textArea {
+  height: 8rem;
+}
+
+.textButton {
+  margin-top: 1rem;
+  height: 2rem;
+  font-weight: bolder;
+  border-radius: 1rem;
+  color: gray;
+  padding: 0.5rem 1.5rem;
+}
