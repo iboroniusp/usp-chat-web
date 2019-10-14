@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Chat from "../Chat";
 import api from "../../api";
 
-function Rooms({ userId }) {
+function Rooms({ userId, userName }) {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -25,7 +25,7 @@ function Rooms({ userId }) {
   }
 
   if (room) {
-    return <Chat roomId={room._id} userId={userId} />;
+    return <Chat roomId={room._id} userId={userId} userName={userName}/>;
   }
 
   return (

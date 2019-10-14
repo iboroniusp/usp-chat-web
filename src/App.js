@@ -93,7 +93,7 @@ function App() {
         </section>
       </div> 
       <section>
-        <Rooms userId={authenticated._id} />
+        <Rooms userId={authenticated._id} userName={authenticated.name}/>
       </section>
     </div>
   );

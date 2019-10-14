@@ -9,7 +9,7 @@ const socket = io(
 );
 
 function Chat(props) {
-  const { roomId, userId } = props;
+  const { roomId, userId, userName } = props;
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -38,8 +38,7 @@ function Chat(props) {
       const response = await api.post(`/messages`, {
         text,
         user_id: userId,
-        room_id: roomId,
-        
+        room_id: roomId
         
       });
       setText("");
@@ -64,8 +63,9 @@ function Chat(props) {
         <ul>
           {data.map(message => (
             <li>
-              <div>{message.user_id}</div>
-              <div>{message.text}</div>
+              <div><font size="3"><b>{userName}</b></font>: {message.text}</div>
+              <div><font size="1">{message.createdAt}</font></div>
+              
             </li>
           ))}
         </ul>
