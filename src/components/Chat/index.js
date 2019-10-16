@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import io from "socket.io-client";
 import api from "../../api";
 import moment from "moment";
@@ -40,12 +40,12 @@ function Chat(props) {
   async function sendMessage() {
     try {
       if (text != "") {
+        setText("");
         const response = await api.post(`/messages`, {
           text,
           user_id: userId,
           room_id: roomId
         });
-        setText("");
         setData([...data, response.data]);
         setLoading(false);
       }
@@ -89,9 +89,9 @@ function Chat(props) {
           id="msg"
           className="textArea"
           onChange={e => setText(e.target.value)}
-        >
-          {text}
-        </textarea>
+          onKeyDown={e => console.log(e)}
+          value={text}
+        />
         <button className="textButton" onClick={sendMessage}>
           Enviar mensagem
         </button>
