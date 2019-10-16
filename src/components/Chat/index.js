@@ -9,7 +9,7 @@ const socket = io(
 );
 
 function Chat(props) {
-  const { roomId, userId, userName } = props;
+  const { roomId, userId } = props;
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -59,13 +59,15 @@ function Chat(props) {
     return <section>{error}</section>;
   }
 
+  
+
   return (
     <section>
       <section>
         <ul>
           {data.map(message => (
             <li>
-              <div><font size="3"><b>{userName}</b></font>: {message.text}</div>
+              <div><font size="3"><b>{message.userId}</b></font>: {message.text}</div>
               <div><font size="1">{message.createdAt}</font></div>
               
             </li>
