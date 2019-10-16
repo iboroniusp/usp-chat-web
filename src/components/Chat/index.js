@@ -54,6 +54,8 @@ function Chat(props) {
       }
     } catch (error) {
       setError(String(error));
+      setSending(false);
+
       setText(oldText);
     }
   }
@@ -76,7 +78,10 @@ function Chat(props) {
       <section className="chat-messages-container">
         <ul className="chat-messages-list">
           {data.map(message => (
-            <li key={message._id}>
+            <li
+              key={message._id}
+              className={message.user_id._id === userId && "self"}
+            >
               <div>
                 <font size="3">
                   <b>{message.user_id.name}</b>

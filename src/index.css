@@ -162,3 +162,23 @@ ul {
 .chat-header .room-name {
   flex: 1;
 }
+
+.chat-messages-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-messages-list li {
+  background: #ecf0f1;
+  align-self: baseline;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.chat-messages-list .self {
+  align-self: flex-end;
+  text-align: right;
+  background: #9b59b6;
+  color: #fff;
+}

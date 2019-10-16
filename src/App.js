@@ -5,6 +5,7 @@ import "./index.css";
 import logo from "./utils/usp-chat-logo.png";
 import profile from "./utils/profile.png";
 import moment from "moment";
+import "moment/locale/pt-br.js"; // this is important for traduction purpose
 
 moment.locale("pt-BR");
 
