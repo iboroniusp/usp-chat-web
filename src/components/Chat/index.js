@@ -4,7 +4,7 @@ import api from "../../api";
 import moment from "moment";
 
 const socket = io(
-  process.env.NODE_ENV === "development"
+  process.env.REACT_APP_ENV === "development"
     ? "http://localhost:3005"
     : "https://usp-chat-api.herokuapp.com/"
 );
