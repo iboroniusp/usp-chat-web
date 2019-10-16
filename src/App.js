@@ -93,15 +93,13 @@ function App() {
   }
 
   return (
-    <div className="mainRoom">
-      <div className="profile">
-        <img className="profileImg" src={profile} height="30px" width="30px" />
+    <section className="mainRoom">
+      <section className="profile">
+        <img className="profileImg" src={profile} height="25px" width="25px" />
         <section className="userName">{authenticated.name}</section>
-      </div>
-      <section>
-        <Rooms userId={authenticated._id} userName={authenticated.name} />
       </section>
-    </div>
+      <Rooms userId={authenticated._id} userName={authenticated.name} />
+    </section>
   );
 }
 

@@ -12,6 +12,7 @@ code {
     monospace;
 }
 
+html,
 body,
 #root {
   height: 100%;
@@ -69,24 +70,23 @@ body,
 .mainRoom {
   display: flex;
   justify-content: baseline;
-  margin: 2rem;
-  padding: 2rem;
-  background-color: white;
-  border: 0.1rem solid gray;
-  border-radius: 1rem;
   flex-flow: column;
-  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.3), 0 2px 7px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .profile {
   display: flex;
+  margin-bottom: 1rem;
   flex-flow: row;
-  align-self: center;
+  border-bottom: 1px solid #c7c7c7;
+  padding-bottom: 1rem;
 }
 
 .userName {
   margin-left: 1rem;
-  font-size: 2rem;
+  font-size: 16px;
   align-self: center;
 }
 
@@ -133,4 +133,32 @@ body,
 
 .textButton:disabled {
   background: #dcdcdc;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.chat-container {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-messages-container {
+  flex: 1;
+  overflow: scroll;
+}
+
+.chat-header {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #c7c7c7;
+  display: flex;
+}
+
+.chat-header .room-name {
+  flex: 1;
 }

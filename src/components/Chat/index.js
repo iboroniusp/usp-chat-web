@@ -67,12 +67,14 @@ function Chat(props) {
   }
 
   return (
-    <section>
-      <section>
-        <b>{roomName}</b>
-        <br />
+    <section className="chat-container">
+      <section className="chat-header">
+        <section className="room-name">Sala: {roomName}</section>
         <button onClick={onCloseRoom}>Fechar Sala</button>
-        <ul className="chat-messages">
+      </section>
+
+      <section className="chat-messages-container">
+        <ul className="chat-messages-list">
           {data.map(message => (
             <li key={message._id}>
               <div>
