@@ -15,8 +15,6 @@ function App() {
   const [name, setName] = useState(null);
   const [error, setError] = useState(null);
 
-  console.log(process.env.REACT_APP_ENV)
-
   async function signin() {
     try {
       const response = await api.post("/users", {
@@ -42,58 +40,62 @@ function App() {
 
   if (!authenticated) {
     return (
-    <div className="main">
-    <div className="image"><img src={logo}/></div>
-    <div className="box">
-      <section>
-        <input
-          className="customInput"
-          type="text"
-          placeholder="Nome"
-          value={name}
-          onChange={e => setName(e.target.value)}
-          />
+      <div className="main">
+        <div className="image">
+          <img src={logo} />
+        </div>
+        <div className="box">
+          <section>
+            <input
+              className="customInput"
+              type="text"
+              placeholder="Nome"
+              value={name}
+              onChange={e => setName(e.target.value)}
+            />
 
-        <hr />
+            <hr />
 
-        <input
-          className="customInput"
-          type="text"
-          placeholder="Número USP"
-          value={uspNumber}
-          onChange={event => setUspNumber(event.target.value)}
-          // Recuperando novo valor do input através do evento
-        />
-        <br />
-        <input
-          className="customInput"
-          type="password"
-          placeholder="Senha"
-          value={password}
-          onChange={event => setPassword(event.target.value)}
-        />
-        <br />
+            <input
+              className="customInput"
+              type="text"
+              placeholder="Número USP"
+              value={uspNumber}
+              onChange={event => setUspNumber(event.target.value)}
+              // Recuperando novo valor do input através do evento
+            />
+            <br />
+            <input
+              className="customInput"
+              type="password"
+              placeholder="Senha"
+              value={password}
+              onChange={event => setPassword(event.target.value)}
+            />
+            <br />
 
-        <div className="buttonDiv"><button className="customButton" onClick={signin}>Entrar</button></div>
+            <div className="buttonDiv">
+              <button className="customButton" onClick={signin}>
+                Entrar
+              </button>
+            </div>
 
-        {error && <section>{error}</section>}
-        {/* verifica se existe um erro e se existir mostra ele  */}
-      </section>
-    </div>
-    </div>  
+            {error && <section>{error}</section>}
+            {/* verifica se existe um erro e se existir mostra ele  */}
+          </section>
+        </div>
+      </div>
     );
   }
 
   return (
     <div className="mainRoom">
       <div className="profile">
-         <img className="profileImg" src={profile} height="30px" width="30px"/>
-        <section className="userName">
-        {authenticated.name}
-        </section>
-      </div> 
+        <img className="profileImg" src={profile} height="30px" width="30px" />
+        <section className="userName">{authenticated.name}</section>
+      </div>
       <section>
-        <Rooms userId={authenticated._id} userName={authenticated.name}/>
+        <Rooms userId={authenticated._id} userName={authenticated.name} />
       </section>
     </div>
   );

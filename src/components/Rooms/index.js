@@ -12,6 +12,10 @@ function Rooms({ userId, userName }) {
     getInitialProps();
   }, []);
 
+  function handleCloseRoom() {
+    setRoom(null);
+  }
+
   async function getInitialProps() {
     try {
       const response = await api.get("/rooms");
@@ -25,7 +29,15 @@ function Rooms({ userId, userName }) {
   }
 
   if (room) {
-    return <Chat roomId={room._id} userId={userId} userName={userName}/>;
+    return (
+      <Chat
+        roomId={room._id}
+        roomName={room.name}
+        userId={userId}
+        userName={userName}
+        onCloseRoom={handleCloseRoom}
+      />
+    );
   }
 
   return (
@@ -33,7 +45,9 @@ function Rooms({ userId, userName }) {
       <ul>
         {data.map(room => (
           <li>
-            <button className="customRoomButton" onClick={() => setRoom(room)}>{room.name}</button>
+            <button className="customRoomButton" onClick={() => setRoom(room)}>
+              {room.name}
+            </button>
           </li>
         ))}
       </ul>
