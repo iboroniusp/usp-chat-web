@@ -15,6 +15,7 @@ function Chat(props) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [text, setText] = useState("");
+  const [sending, setSending] = useState(false);
 
   useEffect(() => {
     getInitialProps();
@@ -38,19 +39,22 @@ function Chat(props) {
   }
 
   async function sendMessage() {
+    const oldText = text;
+    setSending(true);
+    setText("");
     try {
       if (text != "") {
-        setText("");
         const response = await api.post(`/messages`, {
           text,
           user_id: userId,
           room_id: roomId
         });
         setData([...data, response.data]);
-        setLoading(false);
+        setSending(false);
       }
     } catch (error) {
       setError(String(error));
+      setText(oldText);
     }
   }
 
@@ -68,9 +72,9 @@ function Chat(props) {
         <b>{roomName}</b>
         <br />
         <button onClick={onCloseRoom}>Fechar Sala</button>
-        <ul>
+        <ul className="chat-messages">
           {data.map(message => (
-            <li>
+            <li key={message._id}>
               <div>
                 <font size="3">
                   <b>{message.user_id.name}</b>
@@ -89,11 +93,12 @@ function Chat(props) {
           id="msg"
           className="textArea"
           onChange={e => setText(e.target.value)}
-          onKeyDown={e => console.log(e)}
+          onKeyDown={e => e.key === "Enter" && sendMessage()}
           value={text}
+          disabled={sending}
         />
-        <button className="textButton" onClick={sendMessage}>
-          Enviar mensagem
+        <button disabled={sending} className="textButton" onClick={sendMessage}>
+          {sending ? "Enviando Mensagem..." : "Enviar Mensagem"}
         </button>
       </div>
     </section>

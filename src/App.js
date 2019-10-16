@@ -4,6 +4,9 @@ import api from "./api";
 import "./index.css";
 import logo from "./utils/usp-chat-logo.png";
 import profile from "./utils/profile.png";
+import moment from "moment";
+
+moment.locale("pt-BR");
 
 // Components
 
@@ -12,10 +15,11 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [uspNumber, setUspNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState(null);
+  const [name, setName] = useState("");
   const [error, setError] = useState(null);
 
-  async function signin() {
+  async function signin(e) {
+    e.preventDefault();
     try {
       const response = await api.post("/users", {
         usp_number: uspNumber,
@@ -45,7 +49,7 @@ function App() {
           <img src={logo} />
         </div>
         <div className="box">
-          <section>
+          <form onSubmit={signin}>
             <input
               className="customInput"
               type="text"
@@ -75,14 +79,14 @@ function App() {
             <br />
 
             <div className="buttonDiv">
-              <button className="customButton" onClick={signin}>
+              <button type="submit" className="customButton">
                 Entrar
               </button>
             </div>
 
             {error && <section>{error}</section>}
             {/* verifica se existe um erro e se existir mostra ele  */}
-          </section>
+          </form>
         </div>
       </div>
     );

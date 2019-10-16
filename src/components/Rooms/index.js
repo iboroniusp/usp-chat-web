@@ -44,7 +44,7 @@ function Rooms({ userId, userName }) {
     <section>
       <ul>
         {data.map(room => (
-          <li>
+          <li key={room._id}>
             <button className="customRoomButton" onClick={() => setRoom(room)}>
               {room.name}
             </button>
