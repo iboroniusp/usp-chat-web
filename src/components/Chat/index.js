@@ -21,7 +21,10 @@ function Chat(props) {
   }, []);
 
   useEffect(() => {
-    socket.on(roomId, message => setData([...data, message]));
+    socket.on(
+      roomId,
+      message => message.user_id._id !== userId && setData([...data, message])
+    );
   }, [data]);
 
   async function getInitialProps() {
